@@ -1,0 +1,24 @@
+Każda metoda publiczna w kontrolerze to punkt dostępu, który może zostać wywołany. 
+Punkt dostepu HTTP jest w aplikacji webowej, możliwym do wywołania adresem URL. np.: https://localhost:5001/HelloWorld
+URL złożony jest z deklaracji protokołu: HTTPS, lokalizacji sieciowej (wraz z numerem portu): localhost:5001 oraz nazwy punktu dostępu: HelloWorld.
+
+MVC wywołuje wybrany kontroler bazując na przychodzącym adresie URL. Przykładowy format dla URL Routing: /[Controller]/[ActionName]/[Parameters]
+ROuting format jest definiowany w metodzie "Configure" w pliku "Startup.cs"
+
+app.UseMvc(routes =>
+{
+    routes.MapRoute(
+        name: "default",
+        template: "{controller=Home}/{action=Index}/{id?}");
+});
+
+Zgodnie z definicją w templejcie, gdy nie podajesz zadnego z fragmentów URL, wtedy domyślnie jesteś kierowany do kontrolera "Home" i metody "Index". 
+Pierwszy segment determinuje klase kontrolera, więc localhost:xxxx/HelloWorld odnosi się do klasy "HelloWorldController". 
+Drugi segment URL odnosi się do metody w klasie, wiec localhost:xxxx/HelloWorld/Index spowoduje wywołanie metody "Index" w klasie "HelloWorldController".
+Jeżeli nie podasz nazwy metody to domyślnie zostanie wykonana metoda "Index". Stanie się tak ponieważ metoda "Index" została podana jako domyślna.
+Trzeci segment URL ("id") służy do identyfikacji modelu danych. (omówimy to w dalszej części warsztatów)
+
+Razor to składnia znaczników (markup syntax) do enkapsulacji kodu aplikacji wykonywanego po stronie serwera. 
+Składnia Razor zawiera znaczniki Razor, C# oraz HTML. 
+Pliki zawierajace kod Razor z regóły mają rozszerzenie .cshtml. 
+
